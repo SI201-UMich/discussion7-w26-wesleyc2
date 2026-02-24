@@ -35,6 +35,14 @@ def load_listings(f):
         reader = csv.reader(file)
         header = next(reader)
         print("header", header)
+        listings = []
+        for row in reader:
+            row_dict = {}
+            for i, column_name in enumerate(header):
+                row_dict[column_name] = row[i]
+            listings.append(row_dict)
+    return listings
+
 
     pass
 
@@ -56,6 +64,11 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
         dict mapping (neighbourhood_group, room_type) -> average_price (float)
         e.g. { ('Downtown', 'Entire home/apt'): 123.45, ... }
     """
+    stats = {}
+
+    for row in listings:
+        group = row['neighborhood_gropu']
+
     pass
 
 
