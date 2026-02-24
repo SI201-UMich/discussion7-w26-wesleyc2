@@ -67,7 +67,23 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
     stats = {}
 
     for row in listings:
-        group = row['neighborhood_gropu']
+        group = row['neighborhood_group']
+        room = row['room_type']
+        price = float(row['price'])
+
+        key = (group, room)
+
+        if key not in stats:
+            stats[key] = [0.0, 0]
+
+        stats[key][0] += price
+        stats[key][0] += 1
+
+    averages = {}
+    for key, (total_price, count) in stats.items():
+        averages[key] = total_price / count
+
+    return averages
 
     pass
 
